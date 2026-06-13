@@ -7,13 +7,21 @@ This project builds a complete, zero-cost Security Operations Center (SOC) using
 **Key Achievement:** Sub-10 second detection-to-notification time for malware, brute force attacks, and credential dumping tools.
 
 ## Architecture
-Kali (WSL) ──┬──▶ Windows Agent ──┐
-│ │
-└──▶ Ubuntu Agent ────┼──▶ Wazuh Server ──▶ Shuffle Cloud ──▶ Email
-│ │
-│ └──▶ VirusTotal API
-│
-└──▶ MITRE ATT&CK (built-in)
+```mermaid
+flowchart TD
+    KALI[Kali WSL<br/>Attacker] --> WIN[Windows 10 Agent]
+    KALI --> UBU[Ubuntu 22.04 Agent]
+    
+    WIN --> WAZUH[Wazuh Server<br/>192.168.1.8<br/>8GB RAM]
+    UBU --> WAZUH
+    
+    WAZUH --> VT[VirusTotal API<br/>Threat Intelligence]
+    WAZUH --> SHUFFLE[Shuffle SOAR Cloud<br/>Free Tier - 10k runs/month]
+    
+    SHUFFLE --> EMAIL[Email Alert<br/>SOC Analyst]
+    
+    WAZUH --> MITRE[MITRE ATT&CK<br/>Built-in Mapping]
+```
 
 ## Components
 
