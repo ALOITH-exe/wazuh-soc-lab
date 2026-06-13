@@ -8,38 +8,19 @@ This project builds a complete, zero-cost Security Operations Center (SOC) using
 
 ## Architecture
 ```mermaid
-flowchart TB
-    subgraph Attack["Attack Layer"]
-        KALI[Kali WSL<br/>Attacker]
-    end
+flowchart TD
+    KALI[Kali WSL<br/>Attacker] --> WIN[Windows 10 Agent]
+    KALI --> UBU[Ubuntu 22.04 Agent]
     
-    subgraph Endpoints["Monitored Endpoints"]
-        WIN[Windows 10 Agent<br/>4GB RAM]
-        UBU[Ubuntu 22.04 Agent<br/>2GB RAM]
-    end
-    
-    subgraph SIEM["SIEM Layer"]
-        WAZUH[Wazuh Server<br/>192.168.128.128<br/>8GB RAM]
-    end
-    
-    subgraph Enrichment["Enrichment Layer"]
-        VT[VirusTotal API]
-        MITRE[MITRE ATT&CK]
-    end
-    
-    subgraph SOAR["SOAR Layer"]
-        SHUFFLE[Shuffle Cloud<br/>10k runs/month]
-        EMAIL[Email Alert]
-    end
-    
-    KALI --> WIN
-    KALI --> UBU
-    WIN --> WAZUH
+    WIN --> WAZUH[Wazuh Server<br/>192.168.128.128<br/>8GB RAM]
     UBU --> WAZUH
-    WAZUH --> VT
-    WAZUH --> MITRE
-    WAZUH --> SHUFFLE
-    SHUFFLE --> EMAIL
+    
+    WAZUH --> VT[VirusTotal API<br/>Threat Intelligence]
+    WAZUH --> SHUFFLE[Shuffle SOAR Cloud<br/>Free Tier - 10k runs/month]
+    
+    SHUFFLE --> EMAIL[Email Alert<br/>SOC Analyst]
+    
+    WAZUH --> MITRE[MITRE ATT&CK<br/>Built-in Mapping]
 ```
 
 ## Components
@@ -104,9 +85,7 @@ MIT - Free for educational and professional use.
 
 ## Author
 
-Name: Aftab Ahmed 
-Gmail: aloith2160p@gmail.com
-LinkedIn: 
+Name: Aftab Ahmed - aloith2160p@gmail.com
 
 ## Acknowledgments
 
