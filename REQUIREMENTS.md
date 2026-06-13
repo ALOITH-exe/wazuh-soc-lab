@@ -47,14 +47,3 @@ All VMs must be on the same bridged network for proper communication.
 | Windows Agent | DHCP | Bridged |
 | Ubuntu Agent | DHCP | Bridged |
 | Kali WSL | DHCP (via Hyper-V switch) | Bridged |
-
-## Time to Complete
-
-| Phase | Estimated Time |
-|-------|----------------|
-| Wazuh Server Installation | 30 minutes |
-| Agent Deployment | 20 minutes |
-| Attack Simulation | 30 minutes |
-| Shuffle Integration | 30 minutes |
-| Documentation | 1 hour |
-| **Total** | **~3 hours** |
