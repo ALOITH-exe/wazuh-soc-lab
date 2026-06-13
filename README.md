@@ -2,19 +2,18 @@
 
 ## Project Overview
 
-This project builds a complete, zero-cost Security Operations Center (SOC) using open-source tools. The stack detects attacks, enriches alerts with threat intelligence, maps events to MITRE ATT&CK, and automates responses—all running on a standard laptop.
+This project builds a complete, zero-cost Security Operations Center (SOC) using open-source tools. The stack detects attacks, enriches alerts with threat intelligence, maps events to MITRE ATT&CK, and automates responses all running on a standard laptop.
 
 **Key Achievement:** Sub-10 second detection-to-notification time for malware, brute force attacks, and credential dumping tools.
 
 ## Architecture
-Kali  ──┬──▶ Windows Agent ──┐
+Kali (WSL) ──┬──▶ Windows Agent ──┐
 │ │
 └──▶ Ubuntu Agent ────┼──▶ Wazuh Server ──▶ Shuffle Cloud ──▶ Email
 │ │
 │ └──▶ VirusTotal API
 │
 └──▶ MITRE ATT&CK (built-in)
-
 
 ## Components
 
