@@ -1,4 +1,4 @@
-Wazuh SIEM + Shuffle SOAR Home Lab
+# Wazuh SIEM + Shuffle SOAR Home Lab
 
 ## Project Overview
 
