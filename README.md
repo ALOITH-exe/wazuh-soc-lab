@@ -85,7 +85,7 @@ MIT - Free for educational and professional use.
 
 ## Author
 
-Name: Aftab Ahmed - aloith2160p@gmail.com
+Aftab Ahmed - aloith2160p@gmail.com
 
 ## Acknowledgments
 
