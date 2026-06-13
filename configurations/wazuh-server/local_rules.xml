@@ -1,1 +1,40 @@
+<!--
+  Custom Rules for Malware and Tool Detection
+-->
 
+<group name="local,custom,">
+
+  <!-- Mimikatz detection by process name -->
+  <rule id="100300" level="15">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)mimikatz.*\.exe</field>
+    <description>Mimikatz credential dumping tool executed</description>
+    <mitre>
+      <id>T1003.001</id>
+    </mitre>
+    <group>credential_access,</group>
+  </rule>
+
+  <!-- Mimikatz detection by command line arguments -->
+  <rule id="100301" level="14">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)sekurlsa::logonpasswords|privilege::debug</field>
+    <description>Mimikatz credential access command detected</description>
+    <mitre>
+      <id>T1003.001</id>
+    </mitre>
+    <group>credential_access,</group>
+  </rule>
+
+  <!-- Registry persistence detection -->
+  <rule id="100220" level="10">
+    <if_group>sysmon_event13</if_group>
+    <field name="win.eventdata.TargetObject" type="pcre2">(?i)Software\\Microsoft\\Windows\\CurrentVersion\\Run</field>
+    <description>Persistence via Run registry key detected</description>
+    <mitre>
+      <id>T1547.001</id>
+    </mitre>
+    <group>persistence,</group>
+  </rule>
+
+</group>
