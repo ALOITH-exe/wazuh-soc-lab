@@ -7,40 +7,40 @@ This project builds a complete, zero-cost Security Operations Center (SOC) using
 **Key Achievement:** Sub-10 second detection-to-notification time for malware, brute force attacks, and credential dumping tools.
 
 ## Architecture
-┌─────────────────┐
-│ Kali WSL │
-│ (Attacker) │
-└────────┬────────┘
-│
-┌────┴────┐
-│ │
-▼ ▼
-┌───────┐ ┌───────┐
-│ Win10 │ │ Ubuntu│
-│ Agent │ │ Agent │
-└───┬───┘ └───┬───┘
-│ │
-└────┬────┘
-│
-▼
-┌─────────────────┐
-│ Wazuh Server │
-│ (192.168.1.8) │
-│ 8GB RAM │
-└────────┬────────┘
-│
-┌────┴────┐
-│ │
-▼ ▼
-┌───────┐ ┌───────┐
-│Virus- │ │Shuffle│
-│ Total │ │ Cloud │
-└───────┘ └───┬───┘
-│
-▼
-┌───────┐
-│ Email │
-└───────┘
+```mermaid
+flowchart TB
+    subgraph Attack["Attack Layer"]
+        KALI[Kali WSL<br/>Attacker]
+    end
+    
+    subgraph Endpoints["Monitored Endpoints"]
+        WIN[Windows 10 Agent<br/>4GB RAM]
+        UBU[Ubuntu 22.04 Agent<br/>2GB RAM]
+    end
+    
+    subgraph SIEM["SIEM Layer"]
+        WAZUH[Wazuh Server<br/>192.168.128.128<br/>8GB RAM]
+    end
+    
+    subgraph Enrichment["Enrichment Layer"]
+        VT[VirusTotal API]
+        MITRE[MITRE ATT&CK]
+    end
+    
+    subgraph SOAR["SOAR Layer"]
+        SHUFFLE[Shuffle Cloud<br/>10k runs/month]
+        EMAIL[Email Alert]
+    end
+    
+    KALI --> WIN
+    KALI --> UBU
+    WIN --> WAZUH
+    UBU --> WAZUH
+    WAZUH --> VT
+    WAZUH --> MITRE
+    WAZUH --> SHUFFLE
+    SHUFFLE --> EMAIL
+```
 
 ## Components
 
@@ -104,7 +104,9 @@ MIT - Free for educational and professional use.
 
 ## Author
 
-Aftab Ahmed
+Name: Aftab Ahmed 
+Gmail: aloith2160p@gmail.com
+LinkedIn: 
 
 ## Acknowledgments
 
